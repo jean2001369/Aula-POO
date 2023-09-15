@@ -1,43 +1,37 @@
-package Armazem;
+import java.text.NumberFormat;
 
-import java.util.Scanner;
+public class Rendimento_01 {
+    private double investInicial;
+    private double taxaRendimento;
+    private int numMeses;
 
-public class Rendimento {
-    private double investimentoInicial;
-    private double taxaMensal;
-    private int numeroMeses;
-
-    public Rendimento(double investimentoInicial, double taxaMensal, int numeroMeses) {
-        this.investimentoInicial = investimentoInicial;
-        this.taxaMensal = taxaMensal;
-        this.numeroMeses = numeroMeses;
+    public Rendimento_01(double investInicial, double taxaRendimento, int numMeses) {
+        this.investInicial = investInicial;
+        this.taxaRendimento = taxaRendimento;
+        this.numMeses = numMeses;
     }
 
-    public void Rendimento() {
-        double rendimento = investimentoInicial;
-        for (int i = 0; i < numeroMeses; i++) {
-            rendimento += rendimento * (taxaMensal / 100); // Calcula o rendimento mensal
+    public double getInvestInicial() {
+        return investInicial;
+    }
+
+    public double getTaxaRendimento() {
+        return taxaRendimento;
+    }
+
+    public int getNumMeses() {
+        return numMeses;
+    }
+
+    public void calculaRendimento() {
+        double rendimentoMes;
+        rendimentoMes = getInvestInicial();
+        System.out.println("Valor Inicial: " + NumberFormat.getCurrencyInstance().format(getInvestInicial()));
+        System.out.println("Taxa de Juros: " + NumberFormat.getPercentInstance().format(getTaxaRendimento()/100));
+        for (int i=0;i<getNumMeses();i++)
+        {
+            rendimentoMes = rendimentoMes * getTaxaRendimento()/100+rendimentoMes;
+            System.out.println("Mês " + (i+1) + ": " + NumberFormat.getCurrencyInstance().format(rendimentoMes));
         }
-        System.out.println("O rendimento após " + numeroMeses + " meses será de: " + rendimento);
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Informe o valor do investimento inicial: ");
-        double investimentoInicial = scanner.nextDouble();
-
-        System.out.print("Informe a taxa mensal de rendimento (%): ");
-        double taxaMensal = scanner.nextDouble();
-
-        System.out.print("Informe o número de meses: ");
-        int numeroMeses = scanner.nextInt();
-
-        Rendimento calculadora = new Rendimento(investimentoInicial, taxaMensal, numeroMeses);
-
-        calculadora.Rendimento();
-
-        scanner.close();
     }
 }
-
