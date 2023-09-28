@@ -55,7 +55,6 @@ class Onibus extends Veiculo {
         return assentos;
     }
 
-    @Override
     public void exibirDados() {
         super.exibirDados();
         System.out.println("Assentos: " + assentos);
