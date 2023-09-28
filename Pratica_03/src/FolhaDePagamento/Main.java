@@ -1,9 +1,84 @@
 package FolhaDePagamento;
-
 import java.util.Scanner;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+class Funcionario {
+    private int matricula;
+    private String nome;
+    private double salario;
+
+    public Funcionario(int matricula, String nome, double salario) {
+        this.matricula = matricula;
+        this.nome = nome;
+        this.salario = salario;
+    }
+
+    public int getMatricula() {
+        return matricula;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public double calcularProventos() {
+        return 0;
+    }
+}
+
+class Comissao extends Funcionario {
+    private double percentual;
+    private double vendas;
+
+    public Comissao(int matricula, String nome, double salario, double percentual, double vendas) {
+        super(matricula, nome, salario);
+        this.percentual = percentual;
+        this.vendas = vendas;
+    }
+
+    public double getPercentual() {
+        return percentual;
+    }
+
+    public double getVendas() {
+        return vendas;
+    }
+
+    public double calcularProventos() {
+        return getSalario() + (percentual / 100) * vendas;
+    }
+}
+
+class Produtividade extends Funcionario {
+    private double valor;
+    private int producao;
+
+    public Produtividade(int matricula, String nome, double salario, double valor, int producao) {
+        super(matricula, nome, salario);
+        this.valor = valor;
+        this.producao = producao;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public int getProducao() {
+        return producao;
+    }
+
+    public double calcularProventos() {
+        return getSalario() + valor * producao;
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -52,81 +127,6 @@ public class Main {
         double proventos = funcionario.calcularProventos();
         System.out.println("Proventos de " + funcionario.getNome() + ": R$" + proventos);
 
+        scanner.close();
     }
-}
-class Funcionario {
-    private int matricula;
-    private String nome;
-    private double salario;
-
-    public Funcionario(int matricula, String nome, double salario) {
-        this.matricula = matricula;
-        this.nome = nome;
-        this.salario = salario;
-    }
-
-    public int getMatricula() {
-        return matricula;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
-
-    public double calcularProventos() {
-    }
-}
-
-class Comissao extends Funcionario {
-    private double percentual;
-    private double vendas;
-
-    public Comissao(int matricula, String nome, double salario, double percentual, double vendas) {
-        super(matricula, nome, salario);
-        this.percentual = percentual;
-        this.vendas = vendas;
-    }
-
-    public double getPercentual() {
-        return percentual;
-    }
-
-    public double getVendas() {
-        return vendas;
-    }
-
-    public double calcularProventos() {
-        return getSalario() + (percentual / 100) * vendas;
-    }
-}
-
-class Produtividade extends Funcionario {
-    private double valor;
-    private int producao;
-
-    public Produtividade(int matricula, String nome, double salario, double valor, int producao) {
-        super(matricula, nome, salario);
-        this.valor = valor;
-        this.producao = producao;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public int getProducao() {
-        return producao;
-    }
-
-    public double calcularProventos() {
-        return getSalario() + valor * producao;
-      }
 }
