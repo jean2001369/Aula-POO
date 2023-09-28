@@ -78,7 +78,6 @@ class Caminhao extends Veiculo {
         return eixos;
     }
 
-    @Override
     public void exibirDados() {
         super.exibirDados();
         System.out.println("Numero de eixos: " + eixos);
